@@ -1,0 +1,17 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<section id="principal">
+    <div class="row g-0 flex-md-row mb-4 position-relative">
+        <div class="col p-4 d-flex flex-column position-static" style="text-align: center;">
+            <h3 class="mb-0">{{erro}}</h3>
+        </div>
+        <div class="category" style="text-align: center;">
+            <a class="btn btn-outline-primary rounded-pill" style="margin-top: 10px;" href="/">Retornar ao site</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

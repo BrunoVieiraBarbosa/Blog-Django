@@ -1,0 +1,34 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm {% if not post %} fixed-top sticky-top {% endif %} bg-dark">
+    <div class="container-fluid">
+        <a href="{% url 'core:index' %}">
+            <img src="/static/android-chrome-192x192-wbg.png" alt="" width="32" height="32">
+        </a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0" style="margin-left: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link {% if page == 'new' %}active{% endif %}"
+                        href="{% url 'core:new-index' %}">New</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if page == 'tags' %}active{% endif %}"
+                        href="{% url 'core:tag-index' %}">Tags</a>
+                </li>
+            </ul>
+            {% if page != 'home' %}
+            <form class="d-flex" action="{% url 'core:search' %}" method="get">
+                <input list="options-list" class="form-control me-2 rounded-pill custom-select custom-select-sm" name="search" placeholder="search" id="search"
+                    value="{% if page == 'tags' %}tag:{% endif %}">
+                <datalist id="options-list"></datalist>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    <script src="{% static 'js/menu.js' %}"></script>
+</nav>

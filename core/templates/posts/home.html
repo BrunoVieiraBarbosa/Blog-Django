@@ -1,0 +1,45 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section id="principal">
+    {% if search %}
+    <strong class="d-inline-block mb-2 text-dark">{{title}}</strong>
+    {% endif %}
+    {% for post in posts %}
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-secondary">{{post.tags.all.0.category}}</strong>
+                <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none text-reset"><h3 class="mb-0">{{post.title}}</h3></a>
+                <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none text-reset"><div class="mb-1 text-muted">{{post.pub_date}}</div></a>
+                <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none text-reset"><p class="card-text mb-auto">{{ post.description | truncatechars:197 }}</p></a>
+                <div class="tags-list">
+                    {% for tag in post.tags.all %}
+                    <a class="text-tag" href="{% url 'core:tag-name' tag %}">{{tag}}</a>
+                    {% endfor %}
+                </div>
+                <div>
+                    <a href="{% url 'core:post_page' post.slug %}"><button class="btn btn-outline-secondary" type="button">Continuar lendo</button></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <nav id="paginator">
+        {% if page_prev %}
+        {% if page_prev > 1 %}
+        <a class="btn btn-outline-secondary rounded-pill" href="{{text_redirect}}1">1° Pagina</a>
+        {% endif %}
+        <a class="btn btn-outline-secondary rounded-pill" href="{{text_redirect}}{{page_prev}}">Anterior</a>
+        {% endif %}
+        {% if page_next %}
+        <a class="btn btn-outline-secondary rounded-pill" href="{{text_redirect}}{{page_next}}">Proximo</a>
+        {% endif %}
+    </nav>
+</section>
+{% endblock %}

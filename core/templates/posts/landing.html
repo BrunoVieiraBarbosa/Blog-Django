@@ -1,0 +1,163 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% include 'posts/base/header.html' %}
+    <meta name="description" content="Conteudo relacionados a programação e alguns posts sobre outros temas.">
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
+</head>
+
+<body class="d-flex h-100 text-center text-bg-dark" id="top">
+    <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm fixed-top sticky-top bg-dark">
+            <div class="container-fluid">
+                <a id="go-top" style="cursor: pointer;">
+                    <img src="/static/android-chrome-192x192-wbg.png" alt="" width="32" height="32">
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" id="projetos" style="cursor: pointer;">Projetos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="posts" style="cursor: pointer;">Posts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <main class="p-3">
+            <div class="position-relative overflow-hidden p-3 p-md-1 m-md-1 text-center text-bg-dark">
+                <div class="col-md-5 p-lg-4 mx-auto my-5">
+                    <h1>Blog</h1>
+                    <p class="lead">Monstrando algo interessante toda semana(nem sempre).</p>
+                    <a href="{% url 'core:new-index' %}">
+                        <button class="btn btn-outline-light mt-4" type="button">
+                            Ver os últimos posts
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="d-md-flex flex-md-equal">
+                {% if  projects.finished_project %}
+                    <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 w-100 text-center overflow-hidden">
+                        <div class="my-3 py-3">
+                            <h2 class="display-5" id="projeto-concluido">Último Projeto Concluído</h2>
+                            <p class="lead">Foi concluído em {{projects.finished_project.pub_date}}.</p>
+                        </div>
+                        <div class="bg-light shadow-sm mx-auto" style="border-radius: 21px;">
+                            <div
+                                class="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong
+                                        class="d-inline-block mb-2 text-secondary">{{projects.finished_project.tags.all.0.category}}</strong>
+                                    <a href="{% url 'core:post_page' projects.finished_project.slug %}" class="text-decoration-none text-dark">
+                                        <h3 class="mb-0">{{projects.finished_project.title}}</h3>
+                                    </a>
+                                    <a href="{% url 'core:post_page' projects.finished_project.slug %}" class="text-decoration-none text-dark">
+                                        <p class="card-text mb-auto">{{ projects.finished_project.description | truncatechars:197 }}</p>
+                                    </a>
+                                    <div class="tags-list">
+                                        {% for tag in projects.finished_project.tags.all %}
+                                        <a class="text-tag" href="{% url 'core:tag-name' tag %}">{{tag}}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <div>
+                                        <a href="{% url 'core:post_page' projects.finished_project.slug %}">
+                                            <button class="btn btn-outline-secondary mt-1" type="button">
+                                                Continuar lendo
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 w-100 text-center overflow-hidden">
+                    {% if  projects.ongoing_project %}
+                        <div class="my-3 p-3">
+                            <h2 class="display-5">Projeto em Andamento</h2>
+                            <p class="lead">Foi lançado em {{projects.ongoing_project.pub_date}}.</p>
+                        </div>
+                        <div class="bg-light shadow-sm mx-auto" style="border-radius: 21px;">
+                            <div
+                                class="row g-0 rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="d-inline-block mb-2 text-secondary">
+                                        {{projects.ongoing_project.tags.all.0.category}}
+                                    </strong>
+                                    <a href="{% url 'core:post_page' projects.ongoing_project.slug %}" class="text-decoration-none text-dark">
+                                        <h3 class="mb-0">{{projects.ongoing_project.title}}</h3>
+                                    </a>
+                                    <a href="{% url 'core:post_page' projects.ongoing_project.slug %}" class="text-decoration-none text-dark">
+                                        <p class="card-text mb-auto">{{ projects.ongoing_project.description | truncatechars:197 }}</p>
+                                    </a>
+                                    <div class="tags-list">
+                                        {% for tag in projects.ongoing_project.tags.all %}
+                                        <a class="text-tag" href="{% url 'core:tag-name' tag %}">{{tag}}</a>
+                                        {% endfor %}
+                                    </div>
+                                    <div>
+                                        <a href="{% url 'core:post_page' projects.ongoing_project.slug %}">
+                                            <button class="btn btn-outline-secondary mt-1" type="button">
+                                                Continuar lendo
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-3 px-md-3 text-center overflow-hidden">
+                <div class="my-3 py-3">
+                    <h2 class="display-5" id="posts-ultimos">Posts</h2>
+                    <p class="lead"><a class="text-decoration-none text-light" href="{% url 'core:new-index' %}">Clique aqui para ver os últimos posts.</a></p>
+                </div>
+                <div class="bg-light shadow-sm mx-auto" style="border-radius: 21px;width: fit-content;">
+                    <div style="margin: auto;padding: 10px;">
+                        <ol class="list-group list-group">
+                            {% if last_posts %}
+                                {% for post in last_posts %}
+                                <li class="list-group-item border d-flex justify-content-between m-1"
+                                    style="border-radius: 10px;width: auto;">
+                                    <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none link-dark">
+                                        <div class="ms-2 me-auto">
+                                            <div class="fw-bold">{{post.title}}</div>
+                                            {{post.description | truncatechars:80}}
+                                            <div style="text-align: left;">
+                                                <span class="badge bg-secondary rounded-pill">
+                                                    {{post.pub_date}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            {% if not request.COOKIES.cookie_banner_consent %}
+            {% include 'posts/base/cookies.html' %}
+            {% endif %}
+        </main>
+    </div>
+</body>
+<script src="{% static 'js/home.js' %}"></script>
+
+</html>

@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    {% include 'posts/base/header.html' %}
+
+    {% block css %}{% endblock %}
+    {% block js %}{% endblock %}
+    {% block descript %}{% endblock %}
+
+    <title>{% block title %}Base{% endblock %}</title>
+</head>
+
+<body>
+    {% include 'posts/base/menu.html' %}
+    <main>
+        {% block content %}
+        {% endblock %}
+
+        {% if not request.COOKIES.cookie_banner_consent %}
+        {% include 'posts/base/cookies.html' %}
+        {% endif %}
+    </main>
+</body>
+
+</html>

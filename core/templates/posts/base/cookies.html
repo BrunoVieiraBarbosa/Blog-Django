@@ -1,0 +1,43 @@
+{% load static %}
+
+<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div id="cookie-consent" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body" style="text-align: center; color: black;">
+            <div>
+                Utilizamos cookies para otimizar o site e coletar estatísticas de uso.
+                Acesse a <a class="link-info" href="{% url 'core:politica' %}" target="_blank">politica</a> para mais
+                detalhes.
+            </div>
+            <div class="mt-2 pt-2 border-top">
+                <button type="button" class="btn btn-success btn-sm"
+                    onclick="cookiesConsentAccept()">Aceitar</button>
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                    onclick="cookiesConsentOptions()">Rejeitar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="color: black;">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="cookieModalLabel">Opções</h1>
+            </div>
+            <div class="modal-body">
+                <h4 class="modal-body">Desativar cookies</h4>
+                <p style="text-indent: 2.5em;text-align: justify;">Você pode impedir a configuração de cookies ajustando
+                    as configurações do seu navegador.</p>
+                <p style="text-indent: 2.5em;text-align: justify;">A desativação de cookies geralmente resultará na
+                    desativação de determinadas funcionalidades e
+                    recursos deste site. Portanto, é recomendável que você não desative os cookies.</p>
+                <h4 class="modal-body">Deseja permitir ou rejeitar os cookies?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" onclick="cookiesConsentReject()">Rejeitar</button>
+                <button type="button" class="btn btn-success" onclick="cookiesConsentAccept()">Permitir</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/cookies.js' %}"></script>

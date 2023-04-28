@@ -1,0 +1,30 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block descript %}
+<meta name="description" content="Nesta página tem todas as tag e categorias do site.">
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/tags.css' %}">
+{% endblock %}
+
+{% block content %}
+<section id="principal">
+    {% for category, tags in categories.items %}
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0">{{category}}</h3>
+            <div class="d-flex flex-row tags-list">
+                {% for tag in tags %}
+                <a  class="text-tag" href="{% url 'core:tag-name' tag %}">{{tag}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

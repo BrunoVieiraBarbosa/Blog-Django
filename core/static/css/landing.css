@@ -1,0 +1,19 @@
+.tags-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.tags-list > .text-tag {
+    text-decoration: none;
+    color: white;
+    margin: 5px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: rgba(26, 26, 26, 0.7);
+}
+
+.text-tag:hover {
+    transform: scale(1.01);
+}

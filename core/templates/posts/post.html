@@ -1,0 +1,59 @@
+{% extends 'posts/base.html' %}
+{% load static %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block descript %}
+<meta name="description" content="{{post.description}}">
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/dracula.min.css">
+{% endblock %}
+
+{% block js %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+{% endblock %}
+
+{% block content %}
+<section id="block-text">
+    <div id="principal-content">
+        <span id="credits">
+            Publicado em {{post.pub_date}}, por {{post.author.first_name}} {{post.author.last_name}}
+        </span>
+        {{post.text | safe}}
+    </div>
+    <div>
+        {% if previous_post != None or next_post != None %}
+            <h3 class="end_post">Continue lendo:</h3>
+            <div class="continue-content">
+                {% if previous_post != None %}
+                    <div class="prev-next-post">
+                        <a href="{% url 'core:post_page' previous_post.slug %}" class="title-prev-next-post">Anterior: {{previous_post.title}}</a>
+                        <a href="{% url 'core:post_page' previous_post.slug %}">{{previous_post.description}}</a>
+                    </div>
+                {% endif %}
+                {% if next_post != None %}
+                    <div class="prev-next-post">
+                        <a href="{% url 'core:post_page' next_post.slug %}" class="title-prev-next-post">Proximo: {{next_post.title}}</a>
+                        <a href="{% url 'core:post_page' next_post.slug %}">{{next_post.description}}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if suggestions != None %}
+            <h3 class="end_post">Sugestões de Leitura</h3>
+            <div class="continue-content">
+                {% for suggestion in suggestions %}
+                    <div class="prev-next-post">
+                        <a href="{% url 'core:post_page' suggestion.slug %}" class="title-prev-next-post">{{suggestion.title}}</a>
+                        <a href="{% url 'core:post_page' suggestion.slug %}">{{suggestion.description}}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
