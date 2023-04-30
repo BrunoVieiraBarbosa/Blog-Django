@@ -9,5 +9,4 @@
 * python .\manage.py migrate
 * python .\manage.py runserver
 
-
-![Landing Page](https://github.com/Bruno8666/blog-django/blob/main/exemplo/landing.png)
+![Landing Page](https://github.com/BrunoVieiraBarbosa/Blog-Django/blob/main/exemplo/landing.png)
