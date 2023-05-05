@@ -32,8 +32,8 @@ class Post(models.Model):
     text = RichTextField()
     pub_date = models.DateField('publish date', auto_now_add=True)
 
-    previous_post = models.ManyToManyField('self', blank=True)
-    next_post = models.ManyToManyField('self', blank=True)
+    previous_post = models.ForeignKey('self', related_name='previous_p', on_delete=models.DO_NOTHING, blank=True, null=True)
+    next_post = models.ForeignKey('self', related_name='next_p', on_delete=models.DO_NOTHING, blank=True, null=True)
 
 
     def save(self, *args, **kwargs):
