@@ -43,13 +43,10 @@ def post(request: WSGIRequest, slug: str):
 
     context = {
         'post': post_,
-        'previous_post': list(post_.previous_post.all()),
-        'next_post': list(post_.next_post.all()),
+        'previous_post': post_.previous_post,
+        'next_post': post_.next_post,
         'page':None
     }
-
-    context['previous_post'] = None if context['previous_post'] == [] else context['previous_post'][0]
-    context['next_post'] = None if context['next_post'] == [] else context['next_post'][0]
 
     all_posts = [y for x in post_.tags.all() for y in x.post_set.all()]
 
