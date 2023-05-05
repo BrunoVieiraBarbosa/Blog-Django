@@ -19,8 +19,8 @@
     <strong class="d-inline-block mb-2 text-dark">{{title}}</strong>
     {% endif %}
     {% for post in posts %}
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-            <div class="col p-4 d-flex flex-column position-static">
+        <div class="col-lg-10 col-12 row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-secondary">{{post.tags.all.0.category}}</strong>
                 <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none text-reset"><h3 class="mb-0">{{post.title}}</h3></a>
                 <a href="{% url 'core:post_page' post.slug %}" class="text-decoration-none text-reset"><div class="mb-1 text-muted">{{post.pub_date}}</div></a>
