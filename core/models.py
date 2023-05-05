@@ -22,6 +22,13 @@ class Tag(models.Model):
         return self.name
 
 
+class Project(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)
@@ -32,8 +39,10 @@ class Post(models.Model):
     text = RichTextField()
     pub_date = models.DateField('publish date', auto_now_add=True)
 
-    previous_post = models.ForeignKey('self', related_name='previous_p', on_delete=models.DO_NOTHING, blank=True, null=True)
-    next_post = models.ForeignKey('self', related_name='next_p', on_delete=models.DO_NOTHING, blank=True, null=True)
+    project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.DO_NOTHING)
+
+    previous_post = models.ForeignKey('self', related_name='previous_p', blank=True, null=True, on_delete=models.DO_NOTHING)
+    next_post = models.ForeignKey('self', related_name='next_p', blank=True, null=True, on_delete=models.DO_NOTHING)
 
 
     def save(self, *args, **kwargs):
@@ -44,10 +53,11 @@ class Post(models.Model):
         return self.title
 
 
+
 class LandingPage(models.Model):
     name = models.CharField(max_length=50, default="Pagina Principal")
-    finished_project = models.ForeignKey(Post, blank=True, null=True, on_delete=models.PROTECT, related_name="finished_project")
-    ongoing_project = models.ForeignKey(Post, blank=True, null=True, on_delete=models.PROTECT, related_name="ongoing_project")
+    finished_project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.PROTECT, related_name="finished_project")
+    ongoing_project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.PROTECT, related_name="ongoing_project")
     text_alt_project = models.CharField(blank=True, max_length=200)
     text_alt_project_in_progress = models.CharField(blank=True, max_length=200)
 

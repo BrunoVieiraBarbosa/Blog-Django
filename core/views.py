@@ -16,9 +16,25 @@ def handler404(request: WSGIRequest, exception):
 def index(request: WSGIRequest):
     posts_ = Post.objects.all().order_by('-pub_date')[:3]
     try:
-        projects = LandingPage.objects.get(id='1')
+        landing_page = LandingPage.objects.get(id='1')
     except Exception:
-        projects = None
+        landing_page = None
+    projects = None
+    if landing_page:
+        projects = {}
+        if landing_page.finished_project:
+
+            projects['finished_project'] = {
+                'name': landing_page.finished_project.name,
+                'last_post_date': Post.objects.filter(project=landing_page.finished_project).order_by('-pub_date').first().pub_date,
+                'firt_post': Post.objects.filter(project=landing_page.finished_project).order_by('-pub_date').last()
+            }
+        if landing_page.ongoing_project:
+            projects['ongoing_project'] = {
+                'name': landing_page.ongoing_project.name,
+                'last_post_date': Post.objects.filter(project=landing_page.ongoing_project).order_by('-pub_date').first().pub_date,
+                'firt_post': Post.objects.filter(project=landing_page.ongoing_project).order_by('-pub_date').last()
+            }
 
     response = render(request, "posts/landing.html", context={'last_posts': posts_, 'projects': projects})
     return response

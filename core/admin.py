@@ -1,12 +1,16 @@
 from django.contrib import admin
-from .models import Post, Tag, Category, LandingPage
+from .models import Post, Tag, Category, LandingPage, Project
 # Register your models here.
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'pub_date', 'slug')
-    list_editable = ('slug', )
+    list_display = ('title', 'author', 'pub_date', 'slug', 'project')
+    list_editable = ('slug', 'project')
     search_fields = ('title', )
+
+
+class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('name', )
 
 
 class TagAdmin(admin.ModelAdmin):
@@ -22,4 +26,5 @@ class LandingPageAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Project, ProjectAdmin)
 admin.site.register(LandingPage, LandingPageAdmin)
