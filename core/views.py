@@ -161,7 +161,8 @@ def politica(request: WSGIRequest):
 #Retorna um txt dos site permitidos e negados para robos
 def robots_text(request: WSGIRequest):
     lines = [
-            "User-Agent: *\n",
+            "User-Agent: *",
             "Disallow: /admin/",
+            "\nSitemap: 127.0.0.1:8000/sitemap.xml"
         ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
