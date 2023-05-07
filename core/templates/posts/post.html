@@ -27,16 +27,16 @@
     </div>
     <div>
         {% if previous_post != None or next_post != None %}
-            <h3 class="end_post">Continue lendo:</h3>
-            <div class="continue-content">
+            <h3>Continue lendo:</h3>
+            <div class="col d-flex flex-equal flex-wra">
                 {% if previous_post != None %}
-                    <div class="prev-next-post">
+                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-1 border-start border-end border-2 rounded-1 text-decoration-none {% if next_post == None %} mx-auto {% endif %}">
                         <a href="{% url 'core:post_page' previous_post.slug %}" class="title-prev-next-post">Anterior: {{previous_post.title}}</a>
                         <a href="{% url 'core:post_page' previous_post.slug %}">{{previous_post.description}}</a>
                     </div>
                 {% endif %}
                 {% if next_post != None %}
-                    <div class="prev-next-post">
+                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-1 border-start border-end border-2 rounded-1 text-decoration-none {% if previous_post == None %} mx-auto {% endif %}">
                         <a href="{% url 'core:post_page' next_post.slug %}" class="title-prev-next-post">Proximo: {{next_post.title}}</a>
                         <a href="{% url 'core:post_page' next_post.slug %}">{{next_post.description}}</a>
                     </div>
@@ -44,10 +44,10 @@
             </div>
         {% endif %}
         {% if suggestions != None %}
-            <h3 class="end_post">Sugestões de Leitura</h3>
-            <div class="continue-content">
+            <h3>Sugestões de Leitura</h3>
+            <div class="col d-flex flex-equal flex-wrap">
                 {% for suggestion in suggestions %}
-                    <div class="prev-next-post">
+                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-3 border-start border-end border-2 rounded-1 text-decoration-none">
                         <a href="{% url 'core:post_page' suggestion.slug %}" class="title-prev-next-post">{{suggestion.title}}</a>
                         <a href="{% url 'core:post_page' suggestion.slug %}">{{suggestion.description}}</a>
                     </div>
