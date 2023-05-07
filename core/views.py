@@ -64,7 +64,13 @@ def post(request: WSGIRequest, slug: str):
         'page':None
     }
 
-    all_posts = [y for x in post_.tags.all() for y in x.post_set.all()]
+    all_posts = list(
+        set(
+            [y if y != context['previous_post'] and y != context['next_post'] else None for x in post_.tags.all() for y in x.post_set.all()]
+        )
+    )
+    if None in all_posts:
+        all_posts.remove(None)
 
     all_posts = {x: all_posts.count(x) for x in set(all_posts)}
     all_posts = sorted(all_posts, key=lambda x: all_posts[x], reverse=True)
