@@ -1,79 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-#block-text {
-    position: relative;
-    padding: 10px;
-    margin: auto;
-    margin-top: 40px;
-}
-
-@media(min-width: 768px) {
-    #block-text {
-        width: 35%;
-    }
-}
-
-@media(max-width: 767px) {
-    #block-text {
-        width: 95%;
-    }
-}
-
-#block-text h3 {
-    margin-top: 10px;
-    text-align: center;
-}
-
 #principal-content p {
     text-align: justify;
-    text-indent: 2.5em;
-    font-size:larger;
+    text-indent: 2em;
 }
 
-#principal-content a {
-    text-decoration: none;
-    color: black;
+#end-content {
+    text-align: justify;
 }
-
-#principal-content ul a:hover {
-    color: #141414;
-}
-
-#principal-content ul a:hover::after {
-    content: " ->";
-    text-decoration: none;
-}
-
-.tabela-dados {
-    margin-left: 2.5em;
-    text-align: center;
-}
-
-.tabela-dados td, .tabela-dados th {
-    padding: 2px 5px;
-    border: 1px solid rgba(0, 0, 0, 0.6);
-}
-
-.prev-next-post > a {
-    text-align: center;
-    text-decoration: none;
-    color: #1b1b1b;
-}
-
-.prev-next-post > .title-prev-next-post {
-    padding-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    font-weight: bolder;
-}
-
 
 #sidebar {
     position: fixed;
     top: 220px;
     left: 0px;
     padding: 10px;
-  }
+}
   
 #sidebar a {
     display: block;

@@ -18,14 +18,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="fixed-top sticky-top text-light" id="title" style="background-color: #35393d; padding: 45px 0px;">
+<div class="fixed-top sticky-top text-light" style="background-color: #35393d; padding: 45px 0px;">
     <h1 class="text-center">{{post.title}}</h1>
     <p class="m-auto text-center">
         Publicado em {{post.pub_date}}, por {{post.author.first_name}} {{post.author.last_name}}
     </p>
 </div>
 
-<div class="sticky-top d-none d-md-block m-3" id="sidebar">
+<div class="d-none d-xl-block m-3" id="sidebar">
     <div class="card">
         <div class="card-header bg-dark text-light text-center">
             Sumário
@@ -35,35 +35,47 @@
     </div>
 </div>
 
-<section id="block-text">
-    <div id="principal-content">
+<section class="conteiner mt-5">
+    <div class="col-10 col-md-4 mx-auto fs-5 text-black" id="principal-content">
         {{post.text | safe}}
     </div>
-    <div class="mt-5">
+    <div class="col-10 col-md-4 mx-auto fs-6 mt-5 mb-2" id="end-content">
         {% if previous_post != None or next_post != None %}
-            <h3>Continue lendo:</h3>
-            <div class="col d-flex flex-equal flex-wra">
+            <h3 class="text-center">Continue lendo:</h3>
+            <div class="d-flex flex-equal flex-wrap align-items-stretch justify-content-center">
                 {% if previous_post != None %}
-                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-1 border-start border-end border-2 rounded-1 text-decoration-none {% if next_post == None %} mx-auto {% endif %}">
-                        <a href="{% url 'core:post_page' previous_post.slug %}" class="title-prev-next-post">Anterior: {{previous_post.title}}</a>
-                        <a href="{% url 'core:post_page' previous_post.slug %}">{{previous_post.description}}</a>
+                    <div class="card col-12 col-xl-6 mt-1">
+                        <div class="card-header bg-dark text-light text-center" style="height: 70px;">
+                            <a href="{% url 'core:post_page' previous_post.slug %}" class="text-light fw-bold text-decoration-none">Anterior: {{previous_post.title}}</a>
+                        </div>
+                        <ul class="list-group list-group-flush p-2">
+                            <a href="{% url 'core:post_page' previous_post.slug %}" class="text-black text-decoration-none">{{previous_post.description}}</a>
+                        </ul>
                     </div>
                 {% endif %}
                 {% if next_post != None %}
-                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-1 border-start border-end border-2 rounded-1 text-decoration-none {% if previous_post == None %} mx-auto {% endif %}">
-                        <a href="{% url 'core:post_page' next_post.slug %}" class="title-prev-next-post">Proximo: {{next_post.title}}</a>
-                        <a href="{% url 'core:post_page' next_post.slug %}">{{next_post.description}}</a>
+                    <div class="card col-12 col-xl-6 mt-1">
+                        <div class="card-header bg-dark text-light text-center" style="height: 70px;">
+                            <a href="{% url 'core:post_page' next_post.slug %}" class="text-light fw-bold text-decoration-none">Proximo: {{next_post.title}}</a>
+                        </div>
+                        <ul class="list-group list-group-flush p-2">
+                            <a href="{% url 'core:post_page' next_post.slug %}" class="text-black text-decoration-none">{{next_post.description}}</a>
+                        </ul>
                     </div>
                 {% endif %}
             </div>
         {% endif %}
         {% if suggestions != None %}
-            <h3>Sugestões de Leitura</h3>
+            <h3 class="text-center mt-2">Sugestões de Leitura</h3>
             <div class="col d-flex flex-equal flex-wrap">
                 {% for suggestion in suggestions %}
-                    <div class="prev-next-post col-xl-6 col-md-12 p-1 mt-3 border-start border-end border-2 rounded-1 text-decoration-none">
-                        <a href="{% url 'core:post_page' suggestion.slug %}" class="title-prev-next-post">{{suggestion.title}}</a>
-                        <a href="{% url 'core:post_page' suggestion.slug %}">{{suggestion.description}}</a>
+                    <div class="card col-12 col-xl-6 mt-1">
+                        <div class="card-header bg-dark text-light text-center" style="height: 70px;">
+                            <a href="{% url 'core:post_page' suggestion.slug %}" class="text-light fw-bold text-decoration-none">{{suggestion.title}}</a>
+                        </div>
+                        <ul class="list-group list-group-flush p-2">
+                            <a href="{% url 'core:post_page' suggestion.slug %}" class="text-black text-decoration-none">{{suggestion.description}}</a>
+                        </ul>
                     </div>
                 {% endfor %}
             </div>
