@@ -22,7 +22,7 @@
                 </li>
             </ul>
             {% if page != 'home' %}
-            <form class="d-flex" action="{% url 'core:search' %}" method="get">
+            <form class="row form-inline ms-1 me-1" action="{% url 'core:search' %}" method="get">
                 <input list="options-list" class="form-control me-2 rounded-pill custom-select custom-select-sm" name="search" placeholder="search" id="search"
                     value="{% if page == 'tags' %}tag:{% endif %}">
                 <datalist id="options-list"></datalist>
