@@ -7,32 +7,32 @@
     margin-top: 40px;
 }
 
-@media(min-width: 640px) {
+@media(min-width: 768px) {
     #block-text {
         width: 35%;
     }
 }
 
-@media(max-width: 640px) {
+@media(max-width: 767px) {
     #block-text {
         width: 95%;
     }
 }
 
-h3 {
+#block-text h3 {
     margin-top: 10px;
     text-align: center;
 }
 
-#principal-content > p {
+#principal-content p {
     text-align: justify;
     text-indent: 2.5em;
     font-size:larger;
 }
 
-a {
+#principal-content a {
     text-decoration: none;
-    color: rgb(25, 25, 75);
+    color: black;
 }
 
 #principal-content ul a:hover {
@@ -68,47 +68,37 @@ a {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-form {
-    width: 300px;
-    margin: 0 auto;
-}
-
-label {
+#sidebar {
+    position: fixed;
+    top: 220px;
+    left: 0px;
+    padding: 10px;
+  }
+  
+#sidebar a {
     display: block;
-    margin-bottom: 10px;
-}
-
-input[type="text"],
-input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f2f2f2;
-}
-
-input[type="submit"] {
-    background-color: #35393d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
+    padding: 5px;
+    margin: 5px 0;
+    text-decoration: none;
     cursor: pointer;
+    color: #333;
 }
 
-input[type="submit"]:hover {
-    background-color: #212529;
+#sidebar a:hover {
+    background-color: #ddd;
 }
 
+#sidebar .H2 {
+    font-weight: 700;
+    padding-left: 10px;
+  }
 
+#sidebar .H3 {
+    font-weight: 500;
+    padding-left: 30px;
+}
+
+#sidebar .H4 {
+    font-weight: 300;
+    padding-left: 50px;
+}

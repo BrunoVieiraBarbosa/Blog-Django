@@ -13,7 +13,6 @@ document.getElementById('go-top').onclick = (event) => {
 }
 
 document.getElementById('projetos').onclick = (event) => {
-    console.log('ola');
     window.scroll(
         {
             top: projetosY,
