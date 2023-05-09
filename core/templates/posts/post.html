@@ -18,14 +18,18 @@
 {% endblock %}
 
 {% block content %}
+<div class="fixed-top sticky-top text-light" id="title" style="background-color: #35393d; padding: 100px 0px;">
+    <h1 class="text-center">{{post.title}}</h1>
+    <p class="m-auto text-center">
+        Publicado em {{post.pub_date}}, por {{post.author.first_name}} {{post.author.last_name}}
+    </p>
+</div>
+
 <section id="block-text">
     <div id="principal-content">
-        <span id="credits">
-            Publicado em {{post.pub_date}}, por {{post.author.first_name}} {{post.author.last_name}}
-        </span>
         {{post.text | safe}}
     </div>
-    <div>
+    <div class="mt-5">
         {% if previous_post != None or next_post != None %}
             <h3>Continue lendo:</h3>
             <div class="col d-flex flex-equal flex-wra">
