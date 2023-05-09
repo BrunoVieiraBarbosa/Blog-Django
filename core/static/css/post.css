@@ -10,10 +10,6 @@
 @media(min-width: 640px) {
     #block-text {
         width: 35%;
-        border-width: 1px;
-        border-style: solid;
-        border-radius: 1em;
-        border-image: linear-gradient(to bottom, rgba(0, 0, 0, .01), rgba(0, 0, 0, .4), transparent) 1;
     }
 }
 
@@ -31,7 +27,6 @@ h1, h3 {
 p {
     text-align: justify;
     text-indent: 2.5em;
-    color: black;
     font-size:larger;
 }
 
@@ -41,7 +36,7 @@ a {
 }
 
 #principal-content ul a:hover {
-    color: rgb(20, 20, 20);
+    color: #141414;
 }
 
 #principal-content ul a:hover::after {
